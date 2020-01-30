@@ -5,3 +5,6 @@
 	justify-content: space-evenly;
 	padding: 2rem;
 }
+img {
+	border-radius: 50%;
+}
