@@ -1,11 +1,12 @@
 import React from 'react'
+import "./Navbar.css"
 
-export default function Navbar({user}) {
+export default function Navbar({user, handleClick}) {
   return (
-    <div>
+    <div className="navBar">
       <img src={user.avatar} />
       <h1>Welcome {user.email}</h1>
-      <button>Change User</button>
+      <button onClick={() => handleClick()}>Change User</button>
     </div>
   )
 }
