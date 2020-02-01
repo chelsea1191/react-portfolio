@@ -94,7 +94,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<Navbar user={user} handleClick={handleClick} />
+			<Navbar note={note} vacs={vacation} followingCompanies={followingCompanies} params={params} user={user} handleClick={handleClick} />
 			<div className="flex-container">
 				{
 					<Stats
