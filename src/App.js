@@ -92,7 +92,6 @@ function App() {
 		});
 	}, [vacation]);
 
-	console.log(params);
 
 	return (
 		<div className="App">
