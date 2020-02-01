@@ -1,7 +1,10 @@
 .App {
   text-align: center;
 }
-
+body {
+  background-color: #FAEFE5;
+  color: white;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -11,6 +14,17 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+button {
+  height: 50px;
+  width: 100px;
+}
+
+a {
+  color: white;
+  font-size: larger;
+  font-weight: bold;
 }
 
 .App-header {
@@ -35,4 +49,27 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.circle {
+  background-color: #497f7f;
+  border-radius: 50%;
+  margin: 20px;
+  padding: 30px;
+  height: 150px;
+  width: 150px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.list {
+  color: black;
+}
+
+.vacationList {
+  margin: 80px;
 }
