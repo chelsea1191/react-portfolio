@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./Components/Navbar";
-import Stats from "./Components/Stats"
+import Stats from "./Components/Stats";
 
-import qs from 'qs'
-import "./App.css"
+import qs from "qs";
+import "./App.css";
 
 const API = "https://acme-users-api-rev.herokuapp.com/api";
 
@@ -24,24 +24,23 @@ const fetchUser = async () => {
 	return user;
 };
 
+const getHash = () => {
+	return window.location.hash.slice(1);
+};
+
 function App() {
-
-	const getHash = ()=> {
-		return window.location.hash.slice(1);
-	}
-
-	useEffect(()=> {
-		window.addEventListener('hashchange', ()=> {
-			setParams(qs.parse(getHash()));
-		});
-		setParams(qs.parse(getHash()));
-	}, []);
-
 	const [user, setUser] = useState([]);
 	const [note, setNote] = useState([]);
 	const [vacation, setVacation] = useState([]);
 	const [followingCompanies, setFollowingCompanies] = useState([]);
-	const [ params, setParams ] = useState(qs.parse(getHash()));
+	const [params, setParams] = useState(qs.parse(getHash()));
+
+	useEffect(() => {
+		window.addEventListener("hashchange", () => {
+			setParams(qs.parse(getHash()));
+		});
+		setParams(qs.parse(getHash()));
+	}, []);
 
 	async function handleClick() {
 		const storage = window.localStorage;
@@ -67,7 +66,9 @@ function App() {
 	async function fetchFollowingCompanies() {
 		const storage = window.localStorage;
 		const userId = storage.getItem("userId");
-		const companies = (await axios.get(`${API}/users/${userId}/followingCompanies`)).data;
+		const companies = (
+			await axios.get(`${API}/users/${userId}/followingCompanies`)
+		).data;
 		return companies;
 	}
 
@@ -89,15 +90,23 @@ function App() {
 		});
 	}, [user]);
 
+	console.log(params);
+
 	return (
 		<div className="App">
 			<Navbar user={user} handleClick={handleClick} />
 			<div className="flex-container">
-			 { <Stats note={note} vacs={vacation} followingCompanies={followingCompanies} params={params}/> }
+				{
+					<Stats
+						note={note}
+						vacs={vacation}
+						followingCompanies={followingCompanies}
+						params={params}
+					/>
+				}
 			</div>
 		</div>
 	);
 }
-
 
 export default App;
