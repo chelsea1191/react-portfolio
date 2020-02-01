@@ -23,7 +23,6 @@ export default function Companies({ followingCompanies }) {
 
 function findCompany(id) {
 	return companies.map(comp=>{
-		//console.log(comp)
 		if (comp.id===id) {
 			console.log('yes')
 			return comp.companyName
