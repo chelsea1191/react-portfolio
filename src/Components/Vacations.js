@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import axios from "axios";
 import "./Vacation.css";
 
 const API = "https://acme-users-api-rev.herokuapp.com/api";
+
 
 export default function Vacations({ vacation }) {
 	const [startDate, setStartDate] = useState("");
@@ -19,6 +20,11 @@ export default function Vacations({ vacation }) {
 			console.log(error);
 		});
 	};
+
+	const delVac = delVac => {
+		return axios
+		.delete(`${API}/users/${userId}/vacations/${delVac.id}`)
+	}
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -55,6 +61,7 @@ export default function Vacations({ vacation }) {
 							{moment(each.startDate).format("dddd MM/DD/YYYY")} to{" "}
 							{moment(each.endDate).format("dddd MM/DD/YYYY")} (
 							{moment(each.endDate).diff(moment(each.startDate), "days")} days)
+							<button onClick={() => delVac(each)}>Delete</button>
 						</div>
 					))}
 				</ul>
