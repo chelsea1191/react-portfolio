@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./Components/Navbar";
 import Stats from "./Components/Stats";
-
 import qs from "qs";
 import "./App.css";
 
@@ -82,19 +81,22 @@ function App() {
 		fetchNotes().then(response => {
 			setNote(response);
 		});
-		fetchVacs().then(response => {
-			setVacation(response);
-		});
 		fetchFollowingCompanies().then(response => {
 			setFollowingCompanies(response);
 		});
 	}, [user]);
 
+	useEffect(() => {
+		fetchVacs().then(response => {
+			setVacation(response);
+		});
+	}, [vacation]);
+
 	console.log(params);
 
 	return (
 		<div className="App">
-			<Navbar note={note} vacs={vacation} followingCompanies={followingCompanies} params={params} user={user} handleClick={handleClick} />
+			<Navbar params={params} user={user} handleClick={handleClick} />
 			<div className="flex-container">
 				{
 					<Stats
